@@ -16,9 +16,9 @@ import {
 })
 export class NoteCardComponent implements OnInit {
 
-  @Input() title!: string;
-  @Input() body!: string;
-  @Input() link!: string;
+  @Input('title') title!: string;
+  @Input('body') body!: string;
+  @Input('link') link!: string;
 
   @Output('delete') deleteEvent: EventEmitter<void> = new EventEmitter<void>();
 
@@ -27,18 +27,12 @@ export class NoteCardComponent implements OnInit {
 
   constructor(private renderer: Renderer2) { }
 
-  ngOnInit(): void {
+  ngOnInit() {
     // averiguar si hay un texto encima y si no, ocultar el truncador
     let style = window.getComputedStyle(this.bodyText.nativeElement, null);
-    let viewwaleHeight = parseInt(style.getPropertyValue('height'), 10);
+    let viewaleHeight = parseInt(style.getPropertyValue('height'), 10);
 
-    if (this.bodyText.nativeElement.scrollHeight > viewwaleHeight) {
-      // si hay desbordamiento de texto, mostrar el truncador de desvanecimiento
-      this.renderer.setStyle(this.truncator.nativeElement, 'display', 'block');
-    } else {
-      // else (hay texto que desborda), ocultar el truncador fade ut
-      this.renderer.setStyle(this.truncator.nativeElement, 'display', 'none');
-    }
+    this.renderer.setStyle(this.truncator.nativeElement, 'display', 'block');
   }
 
   public onXButtonClick() {

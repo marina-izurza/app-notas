@@ -2,7 +2,7 @@
   <div class="search-bar-container">
     <div class="field">
       <p class="control has-icons-left">
-        <input #filterInput class="input" type="text" (keyup)="filter($any($event.target).value)" placeholder="Filter">
+        <input #filterInput class="input" type="text" (keyup)="filter($any($event.target).value)" placeholder="Buscar">
         <span class="icon is-small is-left">
           <i class="fas fa-search"></i>
         </span>
@@ -21,6 +21,6 @@
     </app-note-card>
   </div>
 
-  <button class="button floating-add-button is-primary" routerLink="new" routerLinkActive="router-link-active" >+ Add</button>
+  <button class="button floating-add-button is-primary" routerLink="new" routerLinkActive="router-link-active" >+ Añadir</button>
 
 </div>

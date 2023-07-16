@@ -16,9 +16,9 @@ import { NotesService } from 'src/app/shared/notes.service';
   styleUrls: ['./notes-list.component.scss'],
   animations: [
     trigger('itemAnim', [
-      // entry animation
+      // animacion entry
       transition('void => *', [
-        // initial state
+        // estado inicial
         style({
           height: 0,
           opacity: 0,
@@ -28,8 +28,8 @@ import { NotesService } from 'src/app/shared/notes.service';
           // We hace to 'expand' out the padding properties
           paddingTop: 0,
           paddingBottom: 0,
-          paddingRight: 0,
           paddingLeft: 0,
+          paddingRight: 0,
         }),
         // First we want to animate the spacinf (wich includes height and margin)
         animate(
@@ -39,11 +39,11 @@ import { NotesService } from 'src/app/shared/notes.service';
             'margin-bottom': '*',
             paddingTop: '*',
             paddingBottom: '*',
-            paddingRight: '*',
             paddingLeft: '*',
+            paddingRight: '*',
           })
         ),
-        animate(100),
+        animate(68),
       ]),
       transition('* => void', [
         // first scale up
@@ -65,8 +65,8 @@ import { NotesService } from 'src/app/shared/notes.service';
         animate(
           '120ms ease-out',
           style({
-            opacity: 0,
             transform: 'scale(0.68)',
+            opacity: 0,
           })
         ),
         // Them animate the spacing (wich includes height, margin and padding)
@@ -83,6 +83,7 @@ import { NotesService } from 'src/app/shared/notes.service';
         ),
       ]),
     ]),
+
     trigger('listAnim', [
       transition('* => *', [
         query(
@@ -111,9 +112,8 @@ export class NotesListComponent implements OnInit {
   constructor(private notesService: NotesService) {}
 
   ngOnInit(): void {
-    // We want to retreve all notes from NoteService
+    // Queremos recuperar todas las notas de NoteService
     this.notes = this.notesService.getAll();
-    // this.filteredNotes = this.notesService.getAll();
     this.filter('');
   }
 
@@ -133,24 +133,25 @@ export class NotesListComponent implements OnInit {
 
     let allResults: Note[] = new Array<Note>();
 
-    // Split up the search query into individual words
-    let terms: string[] = query.split(' '); // split on spaces
+    // Dividir la consulta de búsqueda en palabras individuales
+    let terms: string[] = query.split(' '); // división en espacios
 
-    //remove duplicate search terms
+    //eliminar términos de búsqueda duplicados
     terms = this.removeDuplicates(terms);
 
-    //compile all relevant results into de allResults array
+    //recopilar todos los resultados relevantes en la matriz allResults
     terms.forEach((term) => {
       let results: Note[] = this.relevantNotes(term);
 
-      //append results to the allResults array
+      //añadir los resultados a la matriz allResults
       allResults = [...allResults, ...results];
     });
 
-    // all results will include duplicate notes
-    // because a aprticular note can be the result of many search terms
-    // but we dont want yo show the same note multiple times on the UI
-    // so we first must remove the duplicates
+    // todos los resultados incluirán notas duplicadas
+    // porque una nota particular puede ser el resultado
+    // de muchos términos de búsqueda, pero no queremos
+    // mostrar la misma nota varias veces en la interfaz de
+    // usuario por lo que primero debemos eliminar los duplicados
     let uniqueResults = this.removeDuplicates(allResults);
     this.filteredNotes = uniqueResults;
 
@@ -160,7 +161,7 @@ export class NotesListComponent implements OnInit {
 
   public removeDuplicates(arr: Array<any>): Array<any> {
     let uniqueResults: Set<any> = new Set<any>();
-    // loop through the input array and add the items yo yhe set
+    // recorrer la matriz de entrada y añadir los elementos al set
     arr.forEach((e) => uniqueResults.add(e));
     return Array.from(uniqueResults);
   }
@@ -180,13 +181,13 @@ export class NotesListComponent implements OnInit {
   }
 
   public sortByRelevancy(searchResults: Note[]) {
-    // This mehod will calculate the relevancy of a note
-    // based on the number of times it appears in the search results
+    // Este método calcula la relevancia de una nota en función del
+    // número de veces que aparece en los resultados de búsqueda
 
     let noteCountObj: Record<number, number> = {};
 
     searchResults.forEach((note) => {
-      let noteId = this.notesService.getId(note); // Get the notes id
+      let noteId = this.notesService.getId(note); // Get id de las notas
 
       if (noteCountObj[noteId]) {
         noteCountObj[noteId] += 1;

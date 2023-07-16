@@ -3,7 +3,7 @@
   <form #noteForm="ngForm" (ngSubmit)="onSubmit(noteForm)">
 
     <div class="field">
-      <label class="label">Title</label>
+      <label class="label">Título</label>
       <div class="control">
         <input type="text" name="title" [ngModel]="note.title" required class="input">
       </div>
@@ -12,7 +12,7 @@
     <br>
 
     <div class="field">
-      <label class="label">Body</label>
+      <label class="label">Detalles</label>
       <div class="control">
         <textarea class="textarea" name="body" [ngModel]="note.body"></textarea>
       </div>
@@ -20,10 +20,10 @@
 
     <div class="field is-grouped is-pulled-right">
       <div class="control">
-        <button class="button is-text" type="button" (click)="cancel()">Cancel</button>
+        <button class="button is-text" type="button" (click)="cancel()">Cancelar</button>
       </div>
       <div class="control">
-        <button class="button is-success" type="submit" [disabled]="!noteForm.valid">Save</button>
+        <button class="button is-success" type="submit" [disabled]="!noteForm.valid">Guardar</button>
       </div>
     </div>
 

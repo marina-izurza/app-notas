@@ -5,6 +5,7 @@ import { Note } from './note.model';
   providedIn: 'root',
 })
 export class NotesService {
+
   notes: Note[] = new Array<Note>();
 
   constructor() {}
@@ -22,8 +23,7 @@ export class NotesService {
   }
 
   public add(note: Note) {
-    // This method will add a note to the notes array and return the id of the note
-    //where the id = index
+    // Este método añadirá una nota al array de notas y devolverá el id de la nota donde id = index
     let newLength = this.notes.push(note);
     let index = newLength - 1;
     return index;
