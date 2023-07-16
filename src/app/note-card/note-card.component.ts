@@ -28,15 +28,15 @@ export class NoteCardComponent implements OnInit {
   constructor(private renderer: Renderer2) { }
 
   ngOnInit(): void {
-    // work out if there ir a text over and if not, then hide the truncator
+    // averiguar si hay un texto encima y si no, ocultar el truncador
     let style = window.getComputedStyle(this.bodyText.nativeElement, null);
     let viewwaleHeight = parseInt(style.getPropertyValue('height'), 10);
 
     if (this.bodyText.nativeElement.scrollHeight > viewwaleHeight) {
-      // if there is a text overflow, show the fade out truncator
+      // si hay desbordamiento de texto, mostrar el truncador de desvanecimiento
       this.renderer.setStyle(this.truncator.nativeElement, 'display', 'block');
     } else {
-      // else (there ir a text overflow), hide the fade ut truncator
+      // else (hay texto que desborda), ocultar el truncador fade ut
       this.renderer.setStyle(this.truncator.nativeElement, 'display', 'none');
     }
   }
