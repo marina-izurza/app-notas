@@ -16,12 +16,12 @@ import { NoteDetailsComponent } from './pages/note-details/note-details.componen
     NotesListComponent,
     MainLayoutComponent,
     NoteCardComponent,
-    NoteDetailsComponent,
-    FormsModule
+    NoteDetailsComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
